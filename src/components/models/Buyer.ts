@@ -19,7 +19,7 @@ export class Buyer	{
 	/**
 	 * Частично обновляет данные покупателя.
 	 */
-	public setData(data: Partial<IBuyer>): void	{
+	setData(data: Partial<IBuyer>): void	{
 		if (data.payment !== undefined)	{
 			this.payment = data.payment;
 		}
@@ -41,7 +41,7 @@ export class Buyer	{
 	/**
 	 * Возвращает данные покупателя.
 	 */
-	public getData(): IBuyer	{
+	getData(): IBuyer	{
 		return {
 			payment: this.payment,
 			email: this.email,
@@ -53,7 +53,7 @@ export class Buyer	{
 	/**
 	 * Очищает данные покупателя.
 	 */
-	public clear(): void	{
+	clear(): void	{
 		this.payment = '';
 		this.email = '';
 		this.phone = '';
@@ -64,7 +64,7 @@ export class Buyer	{
 	/**
 	 * Проверяет данные покупателя.
 	 */
-	public validate(): TBuyerErrors {
+	validate(): TBuyerErrors {
 		const errors: TBuyerErrors = {};
 
 		if (!this.payment) {

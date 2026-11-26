@@ -13,11 +13,14 @@ import { API_URL } from './utils/constants';
 
 /**
  * Модели приложения.
- * 
- * Проверка каталога
  */
 const productsCatalog = new ProductsCatalog();
+const basket = new Basket();
+const buyer = new Buyer();
 
+/**
+ * Проверка каталога
+ */
 productsCatalog.setItems(apiProducts.items);
 console.log("Массив товаров из каталога", productsCatalog.getItems());
 console.log("Поиск товара по id", productsCatalog.getItemById("c101ab44-ed99-4a54-990d-47aa2bb4e7d9"),
@@ -33,14 +36,9 @@ productsCatalog.setSelectedItem(productTest);
 console.log("Сохраняем товар, получаем новое значение");
 console.log("Возвращаем выбранный товар", productsCatalog.getSelectedItem());
 
-productsCatalog.clear();
-console.log("Проверяем метод очистки", productsCatalog.getItems());
-
 /**
  * Проверка корзины
  */
-const basket = new Basket();
-
 console.log("Проверяем товары в корзине методом getItems", basket.getItems());
 console.log("Добавляем товары в корзину методом addItem");
 basket.addItem(productTest);
@@ -62,12 +60,9 @@ console.log("Общая сумма", basket.getTotal());
 console.log("Количество товаров в корзине", basket.getCount());
 console.log("Проверяем наличие товара в корзине", basket.hasItem(productTest.id));
 
-
 /**
  * Проверка покупателя
  */
-const buyer = new Buyer();
-
 buyer.setData( {
   payment: "cash",
   email: "qwerty@qwwerty.com",
@@ -88,7 +83,7 @@ buyer.setData( {
   address: "г. Санкт-Петербург",
 });
 console.log("Информация о покупателе", buyer.getData());
-console.log("Проверяем метод validate по почте", buyer.validate());
+console.log("Проверяем метод validate по отдельному ключу", buyer.validate());
 
 /**
  * API-клиент.

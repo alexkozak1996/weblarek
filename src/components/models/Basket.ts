@@ -11,14 +11,14 @@ export class Basket {
 	/**
 	 * Возвращает товары из корзины.
 	 */
-	public getItems(): IProduct[] {
+	getItems(): IProduct[] {
 		return [...this.items];
 	}
 
 	/**
 	 * Добавляет товар в корзину.
 	 */
-	public addItem(item: IProduct): void {
+	addItem(item: IProduct): void {
 		if (this.hasItem(item.id)) {
 			return;
 		}
@@ -30,7 +30,7 @@ export class Basket {
 	/**
 	 * Удаляет товар из корзины.
 	 */
-	public removeItem(item: IProduct): void {
+	removeItem(item: IProduct): void {
 		const oldCount = this.items.length;
 
 		this.items = this.items.filter(
@@ -44,7 +44,7 @@ export class Basket {
 	/**
 	 * Очищает корзину.
 	 */
-	public clear(): void {
+	clear(): void {
 		if (this.items.length === 0) {
 			return;
 		}
@@ -55,7 +55,7 @@ export class Basket {
 	/**
 	 * Возвращает общую стоимость товаров.
 	 */
-	public getTotal(): number {
+	getTotal(): number {
 		return this.items.reduce(
 			(total, item) => total + (item.price ?? 0),
 			0
@@ -65,14 +65,14 @@ export class Basket {
 	/**
 	 * Возвращает количество товаров.
 	 */
-	public getCount(): number {
+	getCount(): number {
 		return this.items.length;
 	}
 
 	/**
 	 * Проверяет наличие товара в корзине.
 	 */
-	public hasItem(id: string): boolean {
+	hasItem(id: string): boolean {
 		return this.items.some(
 			(item) => item.id === id
 		);
