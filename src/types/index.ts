@@ -6,7 +6,7 @@ export type ApiPostMethods = 'POST' | 'PUT' | 'DELETE';
 /**
  * Базовый интерфейс HTTP-клиента.
  */
-export interface IApi {
+export interface IApi	{
 	get<T extends object>(uri: string): Promise<T>;
 
 	post<T extends object>(
@@ -19,7 +19,7 @@ export interface IApi {
 /**
  * Интерфейс товара.
  */
-export interface IProduct {
+export interface IProduct	{
 	id: string;
 	description: string;
 	image: string;
@@ -36,7 +36,7 @@ export type TPayment = 'card' | 'cash';
 /**
  * Данные клиента.
  */
-export interface IBuyer {
+export interface IBuyer	{
 	payment: TPayment | '';
 	email: string;
 	phone: string;
@@ -56,7 +56,7 @@ export type TBuyerErrors = Partial<Record<TBuyerField, string>>;
 /**
  * Ответ сервера при получении каталога.
  */
-export interface IProductsResponse {
+export interface IProductsResponse	{
 	total: number;
 	items: IProduct[];
 }
@@ -64,7 +64,7 @@ export interface IProductsResponse {
 /**
  * Данные заказа.
  */
-export interface IOrder extends IBuyer {
+export interface IOrder extends IBuyer	{
 	total: number;
 	items: string[];
 }
@@ -72,7 +72,7 @@ export interface IOrder extends IBuyer {
 /**
  * Ответ сервера после оформления заказа.
  */
-export interface IOrderResponse {
+export interface IOrderResponse	{
 	id: string;
 	total: number;
 }

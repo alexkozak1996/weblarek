@@ -1,7 +1,6 @@
 import './scss/styles.scss';
 
 import { Api } from './components/base/Api';
-import { EventEmitter } from './components/base/Events';
 
 import { ProductsCatalog } from './components/models/ProductsCatalog';
 import { Basket } from './components/models/Basket';
@@ -12,19 +11,12 @@ import { ApiServer } from './components/ApiServer';
 
 import { API_URL } from './utils/constants';
 
-
-/**
- * Брокер событий приложения.
- */
-const events = new EventEmitter();
-
-
 /**
  * Модели приложения.
  * 
  * Проверка каталога
  */
-const productsCatalog = new ProductsCatalog(events);
+const productsCatalog = new ProductsCatalog();
 
 productsCatalog.setItems(apiProducts.items);
 console.log("Массив товаров из каталога", productsCatalog.getItems());
@@ -41,10 +33,13 @@ productsCatalog.setSelectedItem(productTest);
 console.log("Сохраняем товар, получаем новое значение");
 console.log("Возвращаем выбранный товар", productsCatalog.getSelectedItem());
 
+productsCatalog.clear();
+console.log("Проверяем метод очистки", productsCatalog.getItems());
+
 /**
  * Проверка корзины
  */
-const basket = new Basket(events);
+const basket = new Basket();
 
 console.log("Проверяем товары в корзине методом getItems", basket.getItems());
 console.log("Добавляем товары в корзину методом addItem");
@@ -71,9 +66,9 @@ console.log("Проверяем наличие товара в корзине", 
 /**
  * Проверка покупателя
  */
-const buyer = new Buyer(events);
+const buyer = new Buyer();
 
-buyer.setData({
+buyer.setData( {
   payment: "cash",
   email: "qwerty@qwwerty.com",
   phone: "+7 999 999 99 99",
@@ -84,15 +79,16 @@ console.log("Информация о покупателе", buyer.getData());
 console.log("Проверяем метод clear");
 buyer.clear();
 console.log("Выводим пустые данные о покупателе", buyer.getData());
+console.log("Проверяем метод validate с пустыми полями", buyer.validate());
 console.log("Вводим новые данные покупателя методом setData");
-buyer.setData({
+buyer.setData( {
   payment: "card",
   email: "",
   phone: "+7 999 123 45 67",
   address: "г. Санкт-Петербург",
 });
 console.log("Информация о покупателе", buyer.getData());
-console.log("Проверяем метод validate", buyer.validate());
+console.log("Проверяем метод validate по почте", buyer.validate());
 
 /**
  * API-клиент.

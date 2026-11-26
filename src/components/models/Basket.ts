@@ -1,5 +1,4 @@
 import type { IProduct } from '../../types';
-import type { IEvents } from '../base/Events';
 
 /**
  * Модель корзины.
@@ -8,8 +7,6 @@ import type { IEvents } from '../base/Events';
  */
 export class Basket {
 	private items: IProduct[] = [];
-
-	constructor(private readonly events: IEvents) {}
 
 	/**
 	 * Возвращает товары из корзины.
@@ -28,7 +25,6 @@ export class Basket {
 
 		this.items.push(item);
 
-		this.events.emit('basket:changed');
 	}
 
 	/**
@@ -42,7 +38,6 @@ export class Basket {
 		);
 
 		if (this.items.length !== oldCount) {
-			this.events.emit('basket:changed');
 		}
 	}
 
@@ -55,8 +50,6 @@ export class Basket {
 		}
 
 		this.items = [];
-
-		this.events.emit('basket:changed');
 	}
 
 	/**
